@@ -14,7 +14,7 @@
 
 /* paranoia */
 #if !defined(LUA_NUMBER_DOUBLE)
-#error "please check sources first whether a non-double will work..."
+  #error "please check sources first whether a non-double will work..."
 #endif
 
 /*----------------------------------------------------------------------
@@ -26,14 +26,12 @@
 extern "C" {
 #endif
 
-#if (defined(WIN32) || defined(UNDER_CE)) && !defined(HIDAPI_LIB_STATIC)
-        #ifdef 
-                #define HIDAPI_API __declspec(dllexport)
-        #else
-                #define HIDAPI_API __declspec(dllimport)
-        #endif
-#else
-        #define HIDAPI_API
+#ifndef HIDAPI_API
+  #if (defined(WIN32) || defined(UNDER_CE)) && !defined(HIDAPI_LIB_STATIC)
+          #define HIDAPI_API __declspec(dllexport)
+  #else
+          #define HIDAPI_API
+  #endif
 #endif
 
 /* ELF optimization of externs when compiling as a shared library */

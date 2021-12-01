@@ -20,11 +20,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
-#include <unistd.h>
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#else
+#include <unistd.h>
 #endif
 
 #ifndef TRUE
@@ -34,7 +35,10 @@
 #include "hidapi.h"
 
 #include "luahidapi.h"
+
+#ifndef LUAHIDAPI_VERSION
 #include "version.h"
+#endif
 
 #define MODULE_TIMESTAMP __DATE__ " " __TIME__
 #define MODULE_NAMESPACE "hid"
